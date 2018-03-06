@@ -1,4 +1,4 @@
-package ro.siit.java10;
+package ro.siit.java10.evp;
 
 public class ElectricCar {
 
@@ -24,5 +24,9 @@ public class ElectricCar {
         this.horsePower = horsePower;
         this.rangePerCharge = rangePerCharge;
         this.isNew = isNew;
+    }
+
+    public boolean hasFastCharging() {
+        return fastCharging;
     }
 }
