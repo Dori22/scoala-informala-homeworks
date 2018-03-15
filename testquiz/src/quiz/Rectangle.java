@@ -4,6 +4,8 @@ public class Rectangle {
 
     private double lenght;
     private double width;
+    private double surface;
+    private double perimeter;
 
     public Rectangle(int lenght, int width) {
         this.lenght = lenght;
@@ -19,15 +21,18 @@ public class Rectangle {
         return width;
     }
 
-    public void calcSurfaceRectangle(double surface) {
-        surface = lenght * width;
+    public void calcSurfaceRectangle() {
+        this.surface = surface;
+         surface = lenght * width;
 
         System.out.println("Area of Rectangle is:" + surface);
 
     }
 
-    public void calcPerimeterRectangle(double perimeter) {
+    public void calcPerimeterRectangle() {
+       this.perimeter=perimeter;
         perimeter = lenght * 2 + width * 2;
+        System.out.println(("The perimeter of the rectangle is "+perimeter));
 
     }
 

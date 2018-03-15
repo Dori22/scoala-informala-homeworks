@@ -1,9 +1,11 @@
 package quiz;
 
 public class Triangle {
-private double height;
-private double base;
-private double hypotenuse;
+    private double height;
+    private double base;
+    private double hypotenuse;
+    private double perimeter;
+    private double area;
 
     public Triangle(double height, double base, double hypotenuse) {
         this.height = height;
@@ -24,22 +26,24 @@ private double hypotenuse;
     }
 
 
-private  void calcHypotenuse(){
-    Double hypotenuse = Math.pow(Math.pow(base, 2)
-            + Math.pow(height, 2),0.5);
+    private void calcHypotenuse() {
+        Double hypotenuse = Math.pow(Math.pow(base, 2)
+                + Math.pow(height, 2), 0.5);
+    }
 
-    private void calcPerimeter{
-        Double perimeter = base + height + hypotenuse;
+    public void calcPerimeterOfTriangle() {
+        this.perimeter = perimeter;
+        perimeter = base + height + hypotenuse;
 
         System.out.println("Perimeter of triangle = "
                 + perimeter);
     }
-private void calcArea {
 
-        Double areaTriangle = 0.5 * base * height;
+    public void calcAreaOfTriangle() {
+        this.area = area;
+        area = 0.5 * base * height;
 
-        System.out.println("Area of triangle = "
-                + areaTriangle);
+        System.out.println("Area of triangle = " + area);
 
     }
 
@@ -48,5 +52,3 @@ private void calcArea {
 
 
 
-
-}
