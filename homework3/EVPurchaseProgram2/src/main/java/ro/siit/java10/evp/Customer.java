@@ -9,14 +9,6 @@ public class Customer {
         this.budget = budget;
     }
 
-    public void filterByFastCharging( Dealership dealership ){
-
-        DatabaseElement[] filteredList = dealership.filterByFastCharging();
-
-        for (int i=0; i<filteredList.length;i++) {
-            System.out.println();
-        }
-    }
 }
 
 

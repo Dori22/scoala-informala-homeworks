@@ -1,5 +1,8 @@
 package ro.siit.java10.evp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElectricCar {
 
     private String manufacturer;
@@ -13,7 +16,9 @@ public class ElectricCar {
     private int rangePerCharge;
     private boolean isNew;
 
-    public ElectricCar(String manufacturer, int productionYear, String model, boolean fastCharging, String electricMotor, String electricBattery, String consumption, int horsePower, int rangePerCharge, boolean isNew) {
+    public ElectricCar(String manufacturer, int productionYear, String model, boolean fastCharging,
+                       String electricMotor, String electricBattery, String consumption, int horsePower,
+                       int rangePerCharge, boolean isNew) {
         this.manufacturer = manufacturer;
         this.productionYear = productionYear;
         this.model = model;
@@ -27,6 +32,18 @@ public class ElectricCar {
     }
 
     public boolean hasFastCharging() {
+
+
+
+
         return fastCharging;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public String getModel() {
+        return model;
     }
 }

@@ -19,4 +19,8 @@ public class DatabaseElement {
     public int getStock() {
         return stock;
     }
+
+    public double getPrice() {
+        return price;
+    }
 }
