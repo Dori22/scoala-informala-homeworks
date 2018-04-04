@@ -9,6 +9,13 @@ public class Customer {
         this.budget = budget;
     }
 
+    private static  void buyCarFullAtFullPrice(){
+
+
+
+    }
+
+
 }
 
 

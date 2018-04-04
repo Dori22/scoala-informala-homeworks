@@ -51,7 +51,7 @@ public class Repository {
                 290, true),8,22000));
         carsList.add(new DatabaseElement(new ElectricCar("Smart", 2017, "FourFour ",
                 false, "yes", "yes", "150KW", 115,
-                250, false),0,22700));
+                250, false),1,22700));
         carsList.add(new DatabaseElement(new ElectricCar("Kia", 2018, "Soul",
                 true, "yes", "yes", "450KW", 450,
                 250, true),9,34000));

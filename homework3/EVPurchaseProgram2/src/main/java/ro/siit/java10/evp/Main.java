@@ -1,23 +1,42 @@
 package ro.siit.java10.evp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        Dealership dealership = new Dealership("Marasti");
-//        dealership.printCarsList(dealership.getCarsList());
+        CarDealership carDealership = new CarDealership("Marasti");
+//        carDealership.printCarsList(carDealership.getCarsList());
 
         // consuma prea multa memorie
-//        ArrayList<DatabaseElement> list = dealership.filterCarsByFastCharging(dealership.getCarsList());
-//        dealership.printCarsList(list);
+//        ArrayList<DatabaseElement> list = carDealership.filterCarsByFastCharging();
+//        carDealership.printCarsList(list);
 
-//        dealership.printCarsList(dealership.filterCarsByFastCharging(dealership.getCarsList()));
+//        carDealership.printCarsList(carDealership.filterCarsByFastCharging());
+
+//        carDealership.printCarsList(carDealership.filterCarsByStock());
+
+//        carDealership.printCarsList(carDealership.sortCarsByPrice(carDealership.getCarsList(), true));
+//        carDealership.printCarsList(carDealership.sortCarsByPrice(false));
+
+//        carDealership.printCarsList((carDealership.sortCarsByRange(true)));
+        //       carDealership.printCarsList((carDealership.sortCarsByRange(false)));
+        //      carDealership.printCarsList(carDealership.sortCarsByHorcePower(true));
+        //      carDealership.printCarsList(carDealership.sortCarsByHorcePower(false));
+
+        try {
+            DatabaseElement car = carDealership.getCarsList().get(9);
+            carDealership.buyCar(car, true);
+
+        } catch (GreenBonusExeption e) {
+            System.err.println(e.getMessage());
+        } catch (NotEnoughFunds e) {
+            System.err.println(e.getMessage());
+        } catch (NotInStockException e) {
+            System.err.println(e.getMessage());
+        } catch (ElectricCarNotNewExeption e) {
+            System.err.println(e.getMessage());
+        }
 
 
-//        dealership.filterCarsByStock(dealership.getCarsList());
-        dealership.printCarsList((dealership.filterCarsByStock(dealership.getCarsList())));
     }
 }

@@ -46,4 +46,16 @@ public class ElectricCar {
     public String getModel() {
         return model;
     }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public int getRangePerCharge() {
+        return rangePerCharge;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
 }
