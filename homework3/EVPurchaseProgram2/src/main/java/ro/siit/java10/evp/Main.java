@@ -22,20 +22,22 @@ public class Main {
         //       carDealership.printCarsList((carDealership.sortCarsByRange(false)));
         //      carDealership.printCarsList(carDealership.sortCarsByHorcePower(true));
         //      carDealership.printCarsList(carDealership.sortCarsByHorcePower(false));
+//
+//        try {
+//            DatabaseElement car = carDealership.getCarsList().get(9);
+//            carDealership.buyCar(car, true);
+//
+//        } catch (GreenBonusExeption e) {
+//            System.err.println(e.getMessage());
+//        } catch (NotEnoughFunds e) {
+//            System.err.println(e.getMessage());
+//        } catch (NotInStockException e) {
+//            System.err.println(e.getMessage());
+//        } catch (ElectricCarNotNewExeption e) {
+//            System.err.println(e.getMessage());
+//        }
 
-        try {
-            DatabaseElement car = carDealership.getCarsList().get(9);
-            carDealership.buyCar(car, true);
-
-        } catch (GreenBonusExeption e) {
-            System.err.println(e.getMessage());
-        } catch (NotEnoughFunds e) {
-            System.err.println(e.getMessage());
-        } catch (NotInStockException e) {
-            System.err.println(e.getMessage());
-        } catch (ElectricCarNotNewExeption e) {
-            System.err.println(e.getMessage());
-        }
+        carDealership.printCarsList(carDealership.getCarsList());
 
 
     }
