@@ -1,7 +1,6 @@
 package ro.siit.java10.evp;
 
 public class DatabaseElement implements Comparable<DatabaseElement> {
-
     private ElectricCar electricCar;
     private int stock;
     private double price;
@@ -29,7 +28,6 @@ public class DatabaseElement implements Comparable<DatabaseElement> {
         // -daca un obiect este mai mic decat altul, metoda returneaza un numar negativ (conventie -1)
         // -daca un obiect este egal cu altul, metoda returneaza un 0
         // -daca un obiect este mai mare decat altul, metoda returneaza un numar pozitiv (conventie 1)
-
         // metoda compara un element cu elementul urmator.
         //in collections.sort se va face swap in funtie de rezultatele acestei metode
 
@@ -46,5 +44,10 @@ public class DatabaseElement implements Comparable<DatabaseElement> {
         if (stock > 0) {
             stock--;
         }
+    }
+
+    @Override
+    public String toString() {
+        return  electricCar.toString() + "\nStoc: " + stock + "\nPretul este: "+ price;
     }
 }

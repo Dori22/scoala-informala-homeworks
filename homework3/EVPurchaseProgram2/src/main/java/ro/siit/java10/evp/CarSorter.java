@@ -1,138 +1,79 @@
 package ro.siit.java10.evp;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
 
 public class CarSorter {
 
-    public static ArrayList<DatabaseElement> sortCarsByPrice(ArrayList<DatabaseElement> initialCarList,
-                                                             boolean inAscendingOrder) {
-
-        Comparator<DatabaseElement> priceComparator;
-        // daca sortarea se face in ordine crescatoare
-
-        if (inAscendingOrder == true) {
-            // clasa anonima care presupune implementarea pe loc a unei metode
-            priceComparator = new Comparator<DatabaseElement>() {
-                public int compare(DatabaseElement o1, DatabaseElement o2) {
-                    if (o1.getPrice() < o2.getPrice()) {
-                        return -1;
-                    } else if (o1.getPrice() > o2.getPrice()) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-            };
-        } else {
-            priceComparator = new Comparator<DatabaseElement>() {
-                public int compare(DatabaseElement o1, DatabaseElement o2) {
-                    if (o1.getPrice() < o2.getPrice()) {
-                        return 1;
-                    } else if (o1.getPrice() > o2.getPrice()) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                }
-            };
+    public static List<DatabaseElement> sortCarsByCriteria(List<DatabaseElement> initialCarList, int start, int end,
+                                                           String criteria) {
+        int pivotIndex;
+        if (start < end) {
+            pivotIndex = partition(initialCarList, start, end, criteria);
+            sortCarsByCriteria(initialCarList, start, pivotIndex - 1, criteria);
+            sortCarsByCriteria(initialCarList, pivotIndex + 1, end, criteria);
         }
-
-        ArrayList<DatabaseElement> sortedCarsListByPrice = new ArrayList<DatabaseElement>();
-
-        // copiem lista initiala intr-o alta lista separata pentru a putea sorta dupa pret
-
-        sortedCarsListByPrice.addAll(initialCarList);
-//
-        // sorteaza lista noastra clonata.daca se foloseste doar un argument(sortedCarsListByPrice)
-        // atunci se face sortarea folosinduse metoda compareTo.Daca se folosesc doua argumente (ca si mai jos0
-        //trebuie sa avem un comparator definit vezi metoda sortCarsByPrice de mai sus)
-        Collections.sort(sortedCarsListByPrice, priceComparator);
-
-        return sortedCarsListByPrice;
+        return initialCarList;
     }
 
-
-    public static ArrayList<DatabaseElement> sortCarsByRange(ArrayList<DatabaseElement> initialCarList,
-                                                             boolean inAscendingOrder) {
-        Comparator<DatabaseElement> rangeComparator;
-
-        if (inAscendingOrder == true) {
-
-            rangeComparator = new Comparator<DatabaseElement>() {
-                public int compare(DatabaseElement o1, DatabaseElement o2) {
-                    if (o1.getElectricCar().getHorsePower() < o2.getElectricCar().getHorsePower()) {
-                        return -1;
-                    } else if (o1.getElectricCar().getHorsePower() > o2.getElectricCar().getHorsePower()) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-
-            };
-        } else {
-            rangeComparator = new Comparator<DatabaseElement>() {
-                public int compare(DatabaseElement o1, DatabaseElement o2) {
-                    if (o1.getElectricCar().getHorsePower() < o2.getElectricCar().getHorsePower()) {
-                        return 1;
-                    } else if (o1.getElectricCar().getHorsePower() > o2.getElectricCar().getHorsePower()) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                }
-
-            };
-
+    private static int partition(List<DatabaseElement> initialCarList, int start, int end, String criteria) {
+        DatabaseElement pivot = initialCarList.get(end);
+        int pivotIndex = start;  //aceata este pozitia unde ar trebui sa fie pivotul dupa ce a
+        // fost facute toate swap-urile
+        for (int i = start; i <= end - 1; i++) {
+            //s-a mers pana la end -1 deoarece am luat end ca pivot
+            //for-ul determina pe ce pozitie corecta(st mai mici, dr mai mari) ar trebui sa fie pivotul
+            pivotIndex += swapElementsByCriteria(initialCarList, pivot, i, pivotIndex, criteria);
         }
-        ArrayList<DatabaseElement> sortedCarsListByRange = new ArrayList<DatabaseElement>();
-        sortedCarsListByRange.addAll(initialCarList);
-        Collections.sort(sortedCarsListByRange, rangeComparator);
-
-        return sortedCarsListByRange;
+        Collections.swap(initialCarList, pivotIndex, end);// se pune pivotul pe pozitia lui corecta
+        return pivotIndex;
     }
 
-    public static ArrayList<DatabaseElement> sortCarsByHorcePower(ArrayList<DatabaseElement> initialCarList,
-                                                                  boolean inAscendingOrder) {
-        Comparator<DatabaseElement> horsePowerComparator;
-
-        if (inAscendingOrder == true) {
-
-            horsePowerComparator = new Comparator<DatabaseElement>() {
-                public int compare(DatabaseElement o1, DatabaseElement o2) {
-                    if (o1.getElectricCar().getHorsePower() < o2.getElectricCar().getHorsePower()) {
-                        return -1;
-                    } else if (o1.getElectricCar().getHorsePower() > o2.getElectricCar().getHorsePower()) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+    private static int swapElementsByCriteria(List<DatabaseElement> initialCarList, DatabaseElement pivot,
+                                              int i, int pivotIndex, String criteria) {
+        switch (criteria) {
+            case "PriceAscending":
+                if (initialCarList.get(i).getPrice() < pivot.getPrice()) {
+                    Collections.swap(initialCarList, i, pivotIndex);
+                    return 1;
                 }
-
-            };
-        } else {
-            horsePowerComparator = new Comparator<DatabaseElement>() {
-                public int compare(DatabaseElement o1, DatabaseElement o2) {
-                    if (o1.getElectricCar().getHorsePower() < o2.getElectricCar().getHorsePower()) {
-                        return 1;
-                    } else if (o1.getElectricCar().getHorsePower() > o2.getElectricCar().getHorsePower()) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
+                break;
+            case "PriceDescending":
+                if (initialCarList.get(i).getPrice() > pivot.getPrice()) {
+                    Collections.swap(initialCarList, i, pivotIndex);
+                    return 1;
                 }
-
-            };
-
+                break;
+            case "RangePerChargeAscending":
+                if (initialCarList.get(i).getElectricCar().getRangePerCharge() <
+                        pivot.getElectricCar().getRangePerCharge()) {
+                    Collections.swap(initialCarList, i, pivotIndex);
+                    return 1;
+                }
+                break;
+            case "RangePerChargeDescending":
+                if (initialCarList.get(i).getElectricCar().getRangePerCharge() >
+                        pivot.getElectricCar().getRangePerCharge()) {
+                    Collections.swap(initialCarList, i, pivotIndex);
+                    return 1;
+                }
+                break;
+            case "HorsePowerAscending":
+                if (initialCarList.get(i).getElectricCar().getHorsePower() <
+                        pivot.getElectricCar().getHorsePower()) {
+                    Collections.swap(initialCarList, i, pivotIndex);
+                    return 1;
+                }
+                break;
+            case "HorsePowerDescending":
+                if (initialCarList.get(i).getElectricCar().getHorsePower() >
+                        pivot.getElectricCar().getHorsePower()) {
+                    Collections.swap(initialCarList, i, pivotIndex);
+                    return 1;
+                }
+                break;
         }
-        ArrayList<DatabaseElement> sortCarsByHorcePower = new ArrayList<DatabaseElement>();
-        sortCarsByHorcePower.addAll(initialCarList);
-        Collections.sort(sortCarsByHorcePower, horsePowerComparator);
-
-        return sortCarsByHorcePower;
-
+        return 0;// nu s-a facut swap  si nu incrementam pozitia indexului
     }
 }
 

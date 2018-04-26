@@ -1,10 +1,6 @@
 package ro.siit.java10.evp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ElectricCar {
-
     private String manufacturer;
     private int productionYear;
     private String model;
@@ -32,10 +28,6 @@ public class ElectricCar {
     }
 
     public boolean hasFastCharging() {
-
-
-
-
         return fastCharging;
     }
 
@@ -58,4 +50,12 @@ public class ElectricCar {
     public boolean isNew() {
         return isNew;
     }
+
+    @Override
+    public String toString() {
+        return "\nNumele masinii este: " + manufacturer +"\nModel: " + model + "\nIncarcare rapida: "+fastCharging+
+                "\nRange-ul per masina:" + rangePerCharge + "\nPuterea masinii este: "+ horsePower +
+                "\nMasina este noua :"+ isNew;
+    }
 }
+

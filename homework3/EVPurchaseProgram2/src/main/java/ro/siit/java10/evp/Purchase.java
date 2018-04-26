@@ -1,8 +1,6 @@
 package ro.siit.java10.evp;
 
 public class Purchase {
-
-
     private String clientName;
     private String dealershipName;
     private String carModel;
