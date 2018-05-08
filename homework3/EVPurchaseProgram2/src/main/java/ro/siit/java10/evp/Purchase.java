@@ -10,4 +10,21 @@ public class Purchase {
         this.dealershipName = dealershipName;
         this.carModel = carModel;
     }
+
+    @Override
+    public String toString() {
+        return clientName + " - " + dealershipName + " - " + carModel;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getDealershipName() {
+        return dealershipName;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
 }

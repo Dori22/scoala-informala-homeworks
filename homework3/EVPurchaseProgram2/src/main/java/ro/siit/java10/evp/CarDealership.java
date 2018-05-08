@@ -61,20 +61,20 @@ public class CarDealership {
     }
 
     public void buyCar(DatabaseElement wantedVehicle, boolean withGreenBonus, Customer customer) throws NotInStockException,
-            GreenBonusExeption, ElectricCarNotNewExeption, NotEnoughFunds {
+            GreenBonusException, ElectricCarNotNewExeption, NotEnoughFunds, AlreadyUsedGreenProgramException {
         if (wantedVehicle.getStock() == 0) {
             throw new NotInStockException(" This vehicle is not currently in stock");
         } else if (withGreenBonus) {
-            if (GreenBonusProgram.areFundsAvailable()) {
+            if (GreenBonusProgram.areFundsAvailable(customer.getName())) {
                 if (wantedVehicle.getElectricCar().isNew()) {
                     // daca masina este available si este noua
 
                     completeTransaction(wantedVehicle, customer, true);
                 } else {
-                    throw new ElectricCarNotNewExeption("Green bonus program can be used only for new EV vehicles");
+                    throw new ElectricCarNotNewExeption("Green bonus program can be used only for new Electric vehicles");
                 }
             } else {
-                throw new GreenBonusExeption(" Insufficient Green Bonus Funds");
+                throw new GreenBonusException(" Insufficient Green Bonus Funds");
             }
         } else {
             // clientul nu doreste sa achizitioneze masina cu greenBonus
@@ -89,14 +89,15 @@ public class CarDealership {
                 throw new NotEnoughFunds("You have insufficient funds to purchase this vehicle");
             } else {
                 // cumparam masina  folosind programul de Green Bonus
-                budget += car.getPrice();
-                // decreaseClientBudget();
-                // TODO: 4/3/2018  trebuie implementata metoda decreaseClientBudget()
+                budget += car.getPrice() - GreenBonusProgram.FUNDS_PER_CAR;//bugetul dealer-ului este egal cu
+                //pretul masini -green bonus (10K);
+                ///deealership ia bani de la green bonus si trimite inapoi// catre GB program date despre tranzactie
                 budget += GreenBonusProgram.retrievedApprovedBudget(new Purchase(customer.getName(), name,
-                        car.getElectricCar().getModel()));
+                        car.getElectricCar().getManufacturer()+ " " + car.getElectricCar().getModel()));
                 car.decreaseStock();
-                // sendCarToCustomer();
-                // TODO: 4/3/2018 implementare metoda sendCarToCustomer sau ceva mesaj de preluare a masinii din car dealership
+
+                customer.setBudget(customer.getBudget() - car.getPrice()+GreenBonusProgram.FUNDS_PER_CAR);
+                customer.setCar(car.getElectricCar());
             }
         } else {
             //sell car with full price

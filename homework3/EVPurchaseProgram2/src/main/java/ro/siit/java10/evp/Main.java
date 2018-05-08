@@ -26,16 +26,23 @@ public class Main {
         //      carDealership.printCarsList(carDealership.sortCarsByHorsePower(false));
 
         try {
-            DatabaseElement car = carDealership.getCarsList().get(9);
-            Customer customer = new Customer("Petre", 30000);
-            carDealership.buyCar(car, false, customer);
+            DatabaseElement car1 = carDealership.getCarsList().get(10);
+            Customer customer1 = new Customer("Aurel Suciu", 24000);
+            carDealership.buyCar(car1, true, customer1);
+            carDealership.buyCar(car1, true, customer1);
             System.out.println("Felicitari,sunteti fericitul posesor al masinii :" +
-                    customer.getCar().getManufacturer() +" "+ customer.getCar().getModel());
-            System.out.println("Stoc ramas  :" + car.getStock());
-            System.out.println("Bugetul clientului dupa achizitie este  :" + customer.getBudget());
-            System.out.println("Bugetul dealer-ului dupa vanzare este:  " + carDealership.getBudget());
+                    customer1.getCar().getManufacturer() + " " + customer1.getCar().getModel());
+            System.out.println("Stoc ramas  :" + car1.getStock());
 
-        } catch (GreenBonusExeption | ElectricCarNotNewExeption | NotInStockException | NotEnoughFunds e) {
+
+            System.out.println("Bugetul clientului dupa achizitie este  :" + customer1.getBudget());
+            System.out.println("Bugetul dealer-ului dupa vanzare este:  " + carDealership.getBudget());
+            System.out.println("Bugetul Green Bonus dupa ultima tranzactie este:  " + GreenBonusProgram.getBudget());
+            System.out.println("Mai jos gasiti tranzactiile efectuate cu Green Bonus");
+            GreenBonusProgram.listPurchases();
+
+        } catch (GreenBonusException | ElectricCarNotNewExeption | NotInStockException | NotEnoughFunds |
+                AlreadyUsedGreenProgramException e) {
             System.err.println(e.getMessage());
         }
 
