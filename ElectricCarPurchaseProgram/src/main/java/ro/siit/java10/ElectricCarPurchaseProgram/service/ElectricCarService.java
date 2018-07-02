@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ElectricCarService {
     List<DatabaseElement> getAll(String sql);
+
+    DatabaseElement getById(long Id);
 }

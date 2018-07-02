@@ -17,4 +17,9 @@ public class ElectricCarServiceImpl implements ElectricCarService {
     public List<DatabaseElement> getAll(String sql) {
         return electricCarDAO.getAll(sql);
     }
+
+    @Override
+    public DatabaseElement getById(long Id) {
+        return null;
+    }
 }

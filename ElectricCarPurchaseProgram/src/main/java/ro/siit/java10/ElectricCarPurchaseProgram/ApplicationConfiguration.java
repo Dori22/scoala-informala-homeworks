@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import ro.siit.java10.ElectricCarPurchaseProgram.dao.ElectricCarDAO;
 import ro.siit.java10.ElectricCarPurchaseProgram.dao.ElectricCarDAOImpl;
+import ro.siit.java10.ElectricCarPurchaseProgram.domain.CarDealership;
 
 import javax.sql.DataSource;
 
@@ -13,6 +14,12 @@ public class ApplicationConfiguration {
     @Bean
     public ElectricCarDAO electricCarDAO() {
         return new ElectricCarDAOImpl(dataSource());
+    }
+
+    @Bean
+    public CarDealership carDealership() {
+        return new CarDealership("Marasti");
+
     }
 
     @Bean

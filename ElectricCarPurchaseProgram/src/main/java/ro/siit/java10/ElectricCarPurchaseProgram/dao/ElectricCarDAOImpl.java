@@ -11,11 +11,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ElectricCarDAOImpl implements ElectricCarDAO {
-    private JdbcTemplate jdbcTemplate;
+
+
+    JdbcTemplate jdbcTemplate;
+
 
     public ElectricCarDAOImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
 
     @Override
     public List<DatabaseElement> getAll(String sql) {
@@ -33,6 +37,7 @@ public class ElectricCarDAOImpl implements ElectricCarDAO {
                 electricCar.setHorsePower(resultSet.getInt("horsePower"));
                 electricCar.setRangePerCharge(resultSet.getInt("rangePerCharge"));
                 electricCar.setNew(resultSet.getBoolean("isNew"));
+                electricCar.setId(resultSet.getInt("Id"));
 
                 DatabaseElement result = new DatabaseElement();
                 result.setElectricCar(electricCar);
@@ -42,4 +47,26 @@ public class ElectricCarDAOImpl implements ElectricCarDAO {
             }
         });
     }
-}
+
+
+    @Override
+    public DatabaseElement getById(int id) {
+        return jdbcTemplate.queryForObject("select * from electriccars  where id = ?",
+
+                DATABASE_ELEMENT_ROW_MAPPER, id);
+    }
+
+
+    public final RowMapper<DatabaseElement> DATABASE_ELEMENT_ROW_MAPPER = new RowMapper<DatabaseElement>() {
+
+        @Override
+        public DatabaseElement mapRow(ResultSet resultSet, int i) throws SQLException {
+            return null;
+        }
+
+
+    };
+
+};
+
+

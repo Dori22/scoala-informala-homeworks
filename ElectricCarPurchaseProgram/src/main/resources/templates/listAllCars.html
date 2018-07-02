@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Electric Cars List</title>
+    <style>
+        table, th, td {border: 1px solid black; text-align:center;}
+
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>manufacturer</th>
+        <th>model</th>
+        <th>productionYear</th>
+        <th>fastCharging</th>
+        <th>electricMotor</th>
+        <th>electricBattery</th>
+        <th>consumption</th>
+        <th>horsePower</th>
+        <th>rangePerCharge</th>
+        <th>isNew</th>
+        <th>Stock</th>
+        <th>Price</th>
+        <th>Check Green Bonus</th>
+        <th>Id</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr th:each="element : ${electricCars}">
+        <td th:text="${element.electricCar.manufacturer}"></td>
+        <td th:text="${element.electricCar.model}"></td>
+        <td th:text="${element.electricCar.productionYear}"></td>
+        <td th:text="${element.electricCar.hasFastCharging()}"></td>
+        <td th:text="${element.electricCar.electricMotor}"></td>
+        <td th:text="${element.electricCar.electricBattery}"></td>
+        <td th:text="${element.electricCar.consumption}"></td>
+        <td th:text="${element.electricCar.horsePower}"></td>
+        <td th:text="${element.electricCar.rangePerCharge}"></td>
+        <td th:text="${element.electricCar.isNew()}"></td>
+        <td th:text="${element.stock}"></td>
+        <td th:text="${#numbers.formatDecimal(element.price, 0, 2, 'POINT')}"></td>
+        <td>
+            <input type="submit" onclick="alert(${message})" value="Check Green Bonus!">
+        <td th:text="${element.electricCar.Id}"></td>
+
+        </td>
+
+    </tr>
+
+
+    </tbody>
+</table>
+</body>

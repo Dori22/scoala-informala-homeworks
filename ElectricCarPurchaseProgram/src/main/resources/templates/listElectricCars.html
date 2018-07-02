@@ -1,47 +1,152 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+>
 <head>
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
     <title>Electric Cars List</title>
     <style>
         table, th, td {border: 1px solid black; text-align:center;}
+
+body {
+    background-color: lightblue;
+
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+
     </style>
 </head>
+
+
+</body>
+</body>
+
+
+
+<h1>Electric Vehicle Program</h1>
+
+<h5><strong><p style="color:green;">Please select from below manufacturers <br> the models you would like to review :
+</p></strong></h5>
+
 <body>
-<table dt:table = "true">
-    <thead>
-    <tr>
-        <th>manufacturer</th>
-        <th>model</th>
-        <th>productionYear</th>
-        <th>fastCharging</th>
-        <th>electricMotor</th>
-        <th>electricBattery</th>
-        <th>consumption</th>
-        <th>horsePower</th>
-        <th>rangePerCharge</th>
-        <th>isNew</th>
-        <th>Stock</th>
-        <th>Price</th>
-         </tr>
-         </thead>
-         <tbody>
-             <tr th:each = "element : ${electricCars}">
-             <td th:text = "${element.electricCar.manufacturer}"></td>
-             <td th:text = "${element.electricCar.model}"></td>
-             <td th:text = "${element.electricCar.productionYear}"></td>
-             <td th:text = "${element.electricCar.hasFastCharging()}"></td>
-             <td th:text = "${element.electricCar.electricMotor}"></td>
-             <td th:text = "${element.electricCar.electricBattery}"></td>
-             <td th:text = "${element.electricCar.consumption}"></td>
-             <td th:text = "${element.electricCar.horsePower}"></td>
-             <td th:text = "${element.electricCar.rangePerCharge}"></td>
-                 <td th:text = "${element.electricCar.isNew()}"></td>
-                 <td th:text = "${element.stock}"></td>
-             <td th:text = "${#numbers.formatDecimal(element.price, 0, 2, 'POINT')}"></td>
-                </tr>
-                </tbody>
-            </table>
-            </body>            </html>
+<div class="BMW">
+    <button onclick="myFunction()" class="dropbtn">BMW</button>
+    <div id="myBMW" class="dropdown-content">
+        <a href="https://www.youtube.com/watch?v=Meif6leYjmc">5 series Review</a>
+        <br>
+        <a href="https://www.topgear.com/car-reviews/bmw/i3">I3 Review</a>
+
+    </div>
+</div>
+</body>
+<br>
+
+<body>
+
+<div class="Honda">
+    <button onclick="myFunction()" class="dropbtn">Honda</button>
+    <div id="myHONDA" class="dropdown-content">
+        <a href="https://www.whatcar.com/honda/cr-v/estate/review/">SR-V
+            review</a>
+
+
+    </div>
+</div>
+</body>
+<br>
+
+<body>
+
+<div class="Hyundai">
+    <button onclick="myFunction()" class="dropbtn">Hyundai</button>
+    <div id="myHyundai" class="dropdown-content">
+        <a href="https://cars.usnews.com/cars-trucks/hyundai/sonata">E Sonata review</a>
+        <br>
+        <a href="https://www.whatcar.com/hyundai/ioniq/saloon/review/">Ioniq review</a>
+
+    </div>
+</div>
+</body>
+<br>
+<body>
+
+<div class="Kia">
+    <button onclick="myFunction()" class="dropbtn">Kia</button>
+    <div id="myKia" class="dropdown-content">
+        <a href="https://www.whatcar.com/kia/soul/hatchback/review/">Soul review</a>
+    </div>
+</div>
+</body>
+<br>
+<body>
+
+<div class="Renault">
+    <button onclick="myFunction()" class="dropbtn">Renault</button>
+    <div id="myRenault" class="dropdown-content">
+        <a href="https://www.youtube.com/watch?v=IbF3dFC3tyA/">E-Megan review</a>
+        <br>
+        <a href="https://www.whatcar.com/renault/zoe/hatchback/review/">Zoe review</a>
+    </div>
+</div>
+</body>
+<br>
+<body>
+<div class="Smart
+">
+    <button onclick="myFunction()" class="dropbtn">Smart</button>
+    <div id="mySmart" class="dropdown-content">
+        <a href="https://www.youtube.com/watch?v=1pD4QaErg8A/">Smart FourFour</a>
+        <br>
+        <a href="https://www.youtube.com/watch?v=-ey9sIBSFpU">Smart FourTwo</a>
+        <br>
+        <a href="https://www.youtube.com/watch?v=bV6cBLVFHzI">Smart FourTwo Cabrio</a>
+    </div>
+</div>
+</body>
+<br>
+<body>
+<div class="Volkswagen">
+    <button onclick="myFunction()" class="dropbtn">Volkswagen</button>
+    <div id="myVolkswagen" class="dropdown-content">
+        <a href="https://www.whatcar.com/volkswagen/e-golf/hatchback/review/">Volkswagen E-Golf</a>
+        <br>
+        <a href="https://www.whatcar.com/volkswagen/e-up/city-car/review/">Volkswagen E-UP</a>
+
+    </div>
+</div>
+</body>
+
+<form action="http://localhost:8080/allCars">
+    <br>
+    <h5><p style="color:purple;">Please select from below the criteria:</p></h5>
+
+    <select name="criteria">
+        <option value="priceasc">Sort the cars by price ascending</option>
+        <option value="pricedesc">Sort the cars by price descending</option>
+        <option value="rangeasc">Sort the cars by range per charge ascending</option>
+        <option value="rangedesc">Sort the cars by range per charge descending</option>
+        <option value="horsepowerasc">Sort the cars by horsepower ascending</option>
+        <option value="horsepowerdesc">Sort the cars by horsepower descending</option>
+        <option value="fastcharging">Filter cars by fast charging</option>
+        <option value="stock">Filter cars by stock</option>
+
+    </select>
+    <br><br>
+
+
+    <input type="submit" value="Get results">
+
+</form>
+
+
+</body>
+</html>
