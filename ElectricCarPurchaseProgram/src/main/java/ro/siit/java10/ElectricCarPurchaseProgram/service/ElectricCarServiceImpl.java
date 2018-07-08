@@ -19,7 +19,7 @@ public class ElectricCarServiceImpl implements ElectricCarService {
     }
 
     @Override
-    public DatabaseElement getById(long Id) {
-        return null;
+    public DatabaseElement getById(int identity) {
+        return electricCarDAO.getById(identity);
     }
 }

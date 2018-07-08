@@ -13,7 +13,6 @@ public class CarDealership {
         budget = 0;
     }
 
-
     public void printCarsList(List<DatabaseElement> listToBePrinted) {
         System.out.println("Lista de masini primita de metoda este:\n");
         for (DatabaseElement element : listToBePrinted) {
@@ -89,13 +88,12 @@ public class CarDealership {
         if (carToTestGB.getElectricCar().isNew() == false) {
             throw new ElectricCarNotNewExeption("Green bonus program can be used only for new Electric vehicles");
         }
-        if(GreenBonusProgram.getBudget()==0){
+        if (GreenBonusProgram.getBudget() == 0) {
             throw new GreenBonusException(" Insufficient Green Bonus Funds");
 
         }
 
         return "Green Bonus is Available";
-
     }
 }
 

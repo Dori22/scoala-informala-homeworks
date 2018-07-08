@@ -11,10 +11,12 @@ public class ElectricCar {
     private int horsePower;
     private int rangePerCharge;
     private boolean isNew;
-    private int Id;
+    private int identity;
+
 
     public ElectricCar(String manufacturer, String model, int productionYear, boolean fastCharging, String electricMotor
-            , String electricBattery, String consumption, int horsePower, int rangePerCharge, boolean isNew,int Id) {
+            , String electricBattery, String consumption, int horsePower, int rangePerCharge, boolean isNew,
+                       int identity) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.productionYear = productionYear;
@@ -25,7 +27,7 @@ public class ElectricCar {
         this.horsePower = horsePower;
         this.rangePerCharge = rangePerCharge;
         this.isNew = isNew;
-        this.Id=Id;
+        this.identity = identity;
     }
 
     public ElectricCar() {
@@ -112,20 +114,19 @@ public class ElectricCar {
         this.isNew = isNew;
     }
 
-    public int getId() {
-        return Id;
+    public int getIdentity() {
+        return identity;
     }
 
-    public ElectricCar setId(int id) {
-        Id = id;
-        return this;
+    public void setIdentity(int identity) {
+        identity = identity;
     }
 
     @Override
     public String toString() {
         return "\nNumele masinii este: " + manufacturer + "\nModel: " + model + "\nIncarcare rapida: " + fastCharging +
                 "\nRange-ul per masina:" + rangePerCharge + "\nPuterea masinii este: " + horsePower +
-                "\nMasina este noua :" + isNew+"\nId=ul masinii este: "+Id;
+                "\nMasina este noua :" + isNew + "\nIdentity=ul masinii este: " + identity;
     }
 }
 

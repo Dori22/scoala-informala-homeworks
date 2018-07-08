@@ -7,6 +7,5 @@ import java.util.List;
 public interface ElectricCarDAO {
     List<DatabaseElement> getAll(String sql);
 
-    DatabaseElement getById(int Id);
-
+    DatabaseElement getById(int identity);
 }

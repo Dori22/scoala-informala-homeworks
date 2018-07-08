@@ -30,7 +30,7 @@ public class ApplicationConfiguration {
                 .append("://")
                 .append("localhost")
                 .append(":")
-                .append("5432")
+                .append("5433")
                 .append("/")
                 .append("carsdatabase")
                 .append("?user=")

@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class CarSorter {
-
     public static List<DatabaseElement> sortCarsByCriteria(List<DatabaseElement> initialCarList, int start, int end,
                                                            String criteria) {
         int pivotIndex;

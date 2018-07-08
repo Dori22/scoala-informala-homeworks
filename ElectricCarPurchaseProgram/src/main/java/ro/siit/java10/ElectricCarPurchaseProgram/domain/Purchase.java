@@ -1,5 +1,9 @@
 package ro.siit.java10.ElectricCarPurchaseProgram.domain;
 
+/**
+ * This class shapes a transaction which is then stored in the Green Bonus Program
+ * purchases history.
+ */
 public class Purchase {
     private String clientName;
     private String dealershipName;

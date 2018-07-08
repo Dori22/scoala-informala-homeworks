@@ -6,17 +6,10 @@
     <title>Electric Cars List</title>
     <style>
         table, th, td {border: 1px solid black; text-align:center;}
-
-
-
-
-
-
     </style>
 </head>
 
 <body>
-
 
 <table>
     <thead>
@@ -34,14 +27,9 @@
         <th>Stock</th>
         <th>Price</th>
         <th>Check Green Bonus</th>
-        <th>Id</th>
-
-
     </tr>
     </thead>
     <tbody>
-
-
     <tr th:each="element : ${electricCars}">
         <td th:text="${element.electricCar.manufacturer}"></td>
         <td th:text="${element.electricCar.model}"></td>
@@ -55,15 +43,12 @@
         <td th:text="${element.electricCar.isNew()}"></td>
         <td th:text="${element.stock}"></td>
         <td th:text="${#numbers.formatDecimal(element.price, 0, 2, 'POINT')}"></td>
-        <td>
-            <input type="submit" onclick="alert(${message})" value="Check Green Bonus!">
-        <td th:text="${element.electricCar.Id}"></td>
-
+        <td><button><a th:href = "'http://localhost:8080/checkGB?identity=' + ${element.electricCar.identity}">
+            Check Green Bonus!
+        </a></button></td>
         </td>
-
     </tr>
-
-
     </tbody>
 </table>
+
 </body>

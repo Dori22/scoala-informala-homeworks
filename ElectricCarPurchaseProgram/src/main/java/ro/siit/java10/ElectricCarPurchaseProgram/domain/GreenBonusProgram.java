@@ -6,9 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GreenBonusProgram {
-    private static int budget = 10000000;
     public static final int FUNDS_PER_CAR = 10000;
-
+    private static int budget = 10000000;
     private static List<Purchase> purchasesHistory = new ArrayList<Purchase>();  // 1000 cars per year as per bonus limit
 
     public static boolean areFundsAvailable(String clientName) throws AlreadyUsedGreenProgramException {
@@ -25,7 +24,7 @@ public class GreenBonusProgram {
     }
 
     public static int retrievedApprovedBudget(Purchase purchase) {
-            try {
+        try {
             if (areFundsAvailable(purchase.getClientName())) {
                 budget -= FUNDS_PER_CAR;
                 purchasesHistory.add(purchase);
@@ -46,6 +45,4 @@ public class GreenBonusProgram {
     public static int getBudget() {
         return budget;
     }
-
-
 }

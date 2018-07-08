@@ -47,16 +47,17 @@ public class ElectricCarController {
         return "listAllCars";
     }
 
-    @RequestMapping(value = "/checkGB", method = RequestMethod.POST)
-    public String checkGreenBonus(DatabaseElement databaseElement, Model model) {
+    @RequestMapping(value = "/checkGB", method = RequestMethod.GET)
+    public String checkGreenBonus(@RequestParam(value = "identity") int identity, Model model) {
+        DatabaseElement element = electricCarService.getById(identity);
         String message;
         try {
-            message = carDealership.checkIfGBAvailableForThisCar(databaseElement);
+            message = carDealership.checkIfGBAvailableForThisCar(element);
         } catch (NotInStockException | GreenBonusException | ElectricCarNotNewExeption e) {
             message = e.getMessage();
         }
         model.addAttribute("message", message);
-        return "redirect:/allCars";
+        return "greenBonusStatus";
     }
 
     private String selectFilteringField(String filterCriteria) {
@@ -106,18 +107,14 @@ public class ElectricCarController {
                 return "consumption Asc";
             default:
                 return "manufacturer ";
-
-
         }
     }
 
-
-    @RequestMapping(value = "/carsId/{Id}", method = RequestMethod.GET)
-    public String getById( long Id, Model model) {
-
-        DatabaseElement electricCar = electricCarService.getById(Id);
+    @RequestMapping(value = "/carsIdentity/{identity}", method = RequestMethod.GET)
+    public String getById(int identity, Model model) {
+        DatabaseElement electricCar = electricCarService.getById(identity);
         model.addAttribute("selectedCar", electricCar);
-        return "carsId ";
+        return "carsIdentity ";
     }
 }
 

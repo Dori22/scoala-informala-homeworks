@@ -5,7 +5,6 @@ public class DatabaseElement {
     private int stock;
     private double price;
 
-
     public DatabaseElement(ElectricCar electricCar, int stock, double price) {
         this.electricCar = electricCar;
         this.stock = stock;

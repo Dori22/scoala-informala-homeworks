@@ -21,12 +21,12 @@ public class Customer {
         return budget;
     }
 
-    public ElectricCar getCar() {
-        return car;
-    }
-
     public void setBudget(double budget) {
         this.budget = budget;
+    }
+
+    public ElectricCar getCar() {
+        return car;
     }
 
     public void setCar(ElectricCar car) {

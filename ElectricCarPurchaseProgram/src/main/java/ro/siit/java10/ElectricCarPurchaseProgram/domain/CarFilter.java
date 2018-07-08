@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarFilter {
-
     public static List<DatabaseElement> filterCarsByFastCharging(List<DatabaseElement> initialCarsList) {
         List<DatabaseElement> filteredCarList = new ArrayList<DatabaseElement>();
         for (DatabaseElement element : initialCarsList) {
